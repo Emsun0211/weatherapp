@@ -1,11 +1,14 @@
 import React from "react";
 import { View, StyleSheet } from "react-native";
-import CurrentWeather from "./src/components/cardWeather";
-import UpcomingWeather from "./src/components/UpcomingWeather";
+import CurrentWeather from "./src/screens/cardWeather";
+import City from "./src/screens/City";
+import UpcomingWeather from "./src/screens/UpcomingWeather";
 const App = () => {
   return (
     <View style={styles.container}>
-      <UpcomingWeather />
+      {/* <UpcomingWeather /> */}
+      {/* <CurrentWeather /> */}
+      <City />
     </View>
   );
 };

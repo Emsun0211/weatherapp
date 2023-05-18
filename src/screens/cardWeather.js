@@ -1,9 +1,9 @@
-// import { StatusBar } from "expo-status-bar";
 import { SafeAreaView, StyleSheet, Text, View, StatusBar } from "react-native";
 import React from "react";
 import { Feather } from "@expo/vector-icons";
 
 export default function CurrentWeather() {
+  const {} = styles;
   return (
     <SafeAreaView style={styles.wrapper}>
       <View style={styles.container}>

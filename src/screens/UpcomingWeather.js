@@ -74,27 +74,26 @@ const UpcomingWeather = () => {
   );
   const { container, image } = styles;
   return (
-    <SafeAreaView style={container}>
-      <ImageBackground
-        source={require("../../assets/upcoming-bg.jpg")}
-        style={image}
-      >
+    <ImageBackground
+      source={require("../../assets/upcoming-bg.jpg")}
+      style={image}
+    >
+      <SafeAreaView style={container}>
         <Text>Upcoming Weather</Text>
         <FlatList
           data={DATA}
           renderItem={renderItem}
           keyExtractor={(item) => item.dt_txt}
         />
-      </ImageBackground>
-    </SafeAreaView>
+      </SafeAreaView>
+    </ImageBackground>
   );
 };
 
 const styles = StyleSheet.create({
-  constainer: {
+  container: {
     flex: 1,
     marginTop: StatusBar.currentHeight || 0,
-    backgroundColor: "royalblue",
   },
   image: {
     flex: 1,

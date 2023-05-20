@@ -1,15 +1,31 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { NavigationContainer } from "@react-navigation/native";
-import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import Tabs from "./src/components/Tabs";
+import { ActivityIndicator, StyleSheet, View } from "react-native";
+import { useGetWeather } from "./src/hooks/useGetWeather";
 
 const App = () => {
-  const Tab = createBottomTabNavigator();
+  const [loading, error, weather] = useGetWeather();
+  console.log(loading, error, weather);
+
+  if (weather && weather.list) {
+    return (
+      <NavigationContainer>
+        <Tabs weather={weather} />
+      </NavigationContainer>
+    );
+  }
   return (
-    <NavigationContainer>
-      <Tabs />
-    </NavigationContainer>
+    <View style={styles.container}>
+      <ActivityIndicator size={"large"} color={"blue"} />
+    </View>
   );
 };
 
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: "center",
+  },
+});
 export default App;

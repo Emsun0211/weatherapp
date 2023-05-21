@@ -7,10 +7,12 @@ import {
   ImageBackground,
   View,
 } from "react-native";
+import moment from "moment";
 import { Feather } from "@expo/vector-icons";
 import IconText from "../components/IconText";
+import { weatherType } from "../utilities/weatherType";
 
-const City = () => {
+const City = ({ weatherData }) => {
   const {
     container,
     cityName,
@@ -23,20 +25,21 @@ const City = () => {
     imageLayout,
     rowLayout,
   } = styles;
+  const { name, country, population, sunrise, sunset } = weatherData;
   return (
     <SafeAreaView style={container}>
       <ImageBackground
         source={require("../../assets/city-bg.jpg")}
         style={imageLayout}
       >
-        <Text style={[cityName, cityText]}>London</Text>
-        <Text style={[countryName, cityText]}>UK</Text>
+        <Text style={[cityName, cityText]}>{name}</Text>
+        <Text style={[countryName, cityText]}>{country}</Text>
 
         <View style={[populationWraper, rowLayout]}>
           <IconText
             iconName={"user"}
             iconColor={"red"}
-            bodyText={"8000"}
+            bodyText={`Population: ${population}`}
             bodyTextStyle={populationText}
           />
         </View>
@@ -44,13 +47,13 @@ const City = () => {
           <IconText
             iconName={"sunrise"}
             iconColor={"white"}
-            bodyText={"10:46:58am"}
+            bodyText={moment(sunrise).format("h:mm:ss a")}
             bodyTextStyle={riseSetText}
           />
           <IconText
             iconName={"sunset"}
             iconColor={"white"}
-            bodyText={"17:28:15pm"}
+            bodyText={moment(sunset).format("h:mm:ss a")}
             bodyTextStyle={riseSetText}
           />
         </View>
@@ -69,16 +72,17 @@ const styles = StyleSheet.create({
   },
   cityName: {
     fontSize: 40,
+    color: "white",
   },
   countryName: {
     fontSize: 30,
+    color: "#4D4D4D",
   },
   cityText: {
     justifyContent: "center",
     alignSelf: "center",
     fontSize: 40,
     fontWeight: "bold",
-    color: "white",
   },
   populationWraper: {
     justifyContent: "center",
